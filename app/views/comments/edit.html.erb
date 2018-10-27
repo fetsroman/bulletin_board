@@ -1,0 +1,4 @@
+<%= form_for([@advert, @comment]) do |f| %>
+	<%= f.text_area :content, class: "form-control" %>
+	<%= f.submit class: "btn btn-primary" %>
+<% end %>

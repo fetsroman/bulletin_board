@@ -1,0 +1,19 @@
+<div id="map"></div>
+
+<script>
+  function initMap() {
+    var myLatLng = {lat: parseFloat("<%= @user.latitude %>"), lng: parseFloat("<%= @user.longitude %>")};
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 17,
+      center: myLatLng
+    });
+
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: '<%= @user.address %>'
+    });
+  }
+  $(document).on('turbolinks:load', initMap() );
+</script>

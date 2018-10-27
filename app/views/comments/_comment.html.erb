@@ -1,0 +1,8 @@
+<div class="alert alert-secondary" id="comment_<%= comment.id %>">
+	<h5><%= comment.user.first_name + " " + comment.user.last_name %></h5>
+	<p><%= comment.content %></p>
+	<% if can? :manage, comment %>
+		<%= link_to 'Edit Comment', edit_advert_comment_path(comment.advert, comment), class: "btn btn-warning" %>
+		<%= link_to 'Delete Comment', [comment.advert, comment], method: :delete, data: { confirm: "Are you sure?"}, remote: true, class: "btn btn-danger" %>
+	<% end %>
+</div>

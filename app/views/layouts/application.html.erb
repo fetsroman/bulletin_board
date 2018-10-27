@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BulletinBoard</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6t9gs4SonT1EaJGWd7ElEtQOu7YoqSqI&callback=initMap"></script>
+  </head>
+
+  <body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<div class="container">
+				<%= link_to "Bulletin board", root_path, class: "navbar-brand" %>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"> <%= link_to 'List of Ads', adverts_path, class: "nav-link" %> </li>
+						<li class="nav-item"> <%= link_to 'List of Users', users_path, class: "nav-link" %> </li>
+						<% if user_signed_in? %>
+							<li class="nav-item"> <%= link_to 'Profile', current_user, class: "nav-link" %> </li>
+							<li class="nav-item"> <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "nav-link" %> </li>
+						<% else %>
+							<li class="nav-item"> <%= link_to 'Log in', new_user_session_path, class: "nav-link" %> </li>
+							<li class="nav-item"> <%= link_to 'Sign up', new_user_registration_path, class: "nav-link" %> </li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		
+
+  	<div class="container">
+  		<% flash.each do |name, message| %>
+				<div class="alert alert-<%= name %>" role="alert">
+					<%= message %>
+				</div>
+  		<% end %>
+			<div class="content">
+ 	   		<%= yield %>
+   		</div>
+    </div>
+  </body>
+</html>

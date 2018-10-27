@@ -1,0 +1,20 @@
+<table class="table ">
+	<thead class="thead-light">
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">Name</th>
+	      <th scope="col">Country</th>
+	      <th></th>
+	    </tr>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+		    <tr>
+		      <th scope="row"><%= user.id %></th>
+		      <td><%= user.first_name %> <%= user.last_name %></td>	
+		      <td><%= user.country %></td>
+		      <td><%= link_to 'More details', user, class: "btn btn-info" %></td>
+		    </tr>
+	    <% end %>
+	</tbody>
+</table>

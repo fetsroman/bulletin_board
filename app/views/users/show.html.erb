@@ -1,0 +1,37 @@
+<% if @user.id == current_user.try(:id) %>
+	<%= link_to 'Edit', edit_user_registration_path, class: "btn btn-warning" %>
+<% elsif current_user.try(:admin?)%>
+  <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-warning" %>
+<% end %>
+
+<dl class="row">
+  <dt class="col-sm-3">
+		<% if @user.admin == true %>
+			<p>Admin</p>
+		<% elsif @user.moderator == true %>
+			<p>Moderator</p>
+		<% end %>
+  </dt>
+  <dd class="col-sm-9"></dd>
+
+  <dt class="col-sm-3">Name: </dt>
+  <dd class="col-sm-9">
+    <p><%= @user.first_name %> <%= @user.last_name %></p>
+  </dd>
+
+  <dt class="col-sm-3">Email: </dt>
+  <dd class="col-sm-9">
+  	<p><%= @user.email %></p>
+  </dd>
+
+  <dt class="col-sm-3 text-truncate">Address: </dt>
+  <dd class="col-sm-9">
+  	<p><%= @user.address %></p>
+		<p><%= @user.zip %></p>
+	</dd>
+
+  <dt class="col-sm-3">Map: </dt>
+  <dd class="col-sm-9">
+    <%= render 'users/map' %>
+  </dd>
+</dl>

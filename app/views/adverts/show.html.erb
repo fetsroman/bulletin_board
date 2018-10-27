@@ -1,0 +1,21 @@
+<div class="text-left">
+	<%= link_to 'Back', :back, class: "btn btn-dark" %>
+	<% if can? :manage, @advert %>
+		<%= link_to "Edit", edit_advert_path(@advert), class: "btn btn-warning" %>
+		<%= link_to "Delete", advert_path(@advert), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+	<% end %>
+</div>
+<hr>
+<div class="text-center">
+	<%= image_tag @advert.image.url(:large) if @advert.image? %>
+</div>
+<hr>
+<h3 class="text-center"><%= @advert.user.first_name + " " + @advert.user.last_name %></h3>
+<hr>
+<%= markdown @advert.description %>
+<div id="comments">
+	<%= render @comments %>
+</div>
+<% if signed_in? %>
+	<%= render 'comments/form' %>
+<% end %>

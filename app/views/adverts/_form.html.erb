@@ -1,0 +1,22 @@
+<%= form_for @advert, html: { multipart: true } do |f| %>
+	<% if @advert.errors.any? %>
+		<div class="alert alert-danger">
+			<h4><%= pluralize(@advert.errors.count, "error") %> prevented this post for saving:</h4>
+			<ul>
+				<% @advert.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<div class="form-group">
+		<h5><%= f.label :description %></h5>
+		<%= f.text_area :description, class: "form-control", rows: "20" %>
+	</div>
+	<div class="form-group">
+		<%= f.file_field :image%>
+	</div>
+	<%= f.submit class: "btn btn-primary" %>
+	<%= link_to 'Back', :back, class: "btn btn-dark" %>
+
+<% end %>
